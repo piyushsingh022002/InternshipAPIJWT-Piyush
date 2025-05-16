@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: internship-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        sync: false # This will be set manually in Render dashboard
+      - key: JwtSettings__SecretKey
+        sync: false # This will be set manually in Render dashboard
+      - key: PORT
+        value: 10000
+    healthCheckPath: /swagger
