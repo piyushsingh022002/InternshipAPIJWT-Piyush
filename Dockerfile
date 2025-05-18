@@ -25,4 +25,7 @@ ENV PORT=10000
 # Disable HTTPS redirection for Render deployment
 ENV ASPNETCORE_ENVIRONMENT=Production
 
+# Add healthcheck to ensure container is running properly
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:$PORT/swagger || exit 1
+
 ENTRYPOINT ["dotnet", "InternshipAPI.dll"]

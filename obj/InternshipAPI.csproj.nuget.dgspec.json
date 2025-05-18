@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/piyush/Desktop/verification/InternshipAPI/InternshipAPI.csproj": {}
+    "/Users/piyush/Desktop/InternshipAPI/InternshipAPI.csproj": {}
   },
   "projects": {
-    "/Users/piyush/Desktop/verification/InternshipAPI/InternshipAPI.csproj": {
+    "/Users/piyush/Desktop/InternshipAPI/InternshipAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/piyush/Desktop/verification/InternshipAPI/InternshipAPI.csproj",
+        "projectUniqueName": "/Users/piyush/Desktop/InternshipAPI/InternshipAPI.csproj",
         "projectName": "InternshipAPI",
-        "projectPath": "/Users/piyush/Desktop/verification/InternshipAPI/InternshipAPI.csproj",
+        "projectPath": "/Users/piyush/Desktop/InternshipAPI/InternshipAPI.csproj",
         "packagesPath": "/Users/piyush/.nuget/packages/",
-        "outputPath": "/Users/piyush/Desktop/verification/InternshipAPI/obj/",
+        "outputPath": "/Users/piyush/Desktop/InternshipAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/piyush/.nuget/NuGet/NuGet.Config"

@@ -11,6 +11,13 @@ services:
         sync: false # This will be set manually in Render dashboard
       - key: JwtSettings__SecretKey
         sync: false # This will be set manually in Render dashboard
+      - key: JwtSettings__Issuer
+        value: InternshipAPI
+      - key: JwtSettings__Audience
+        value: InternshipAPIClients
+      - key: JwtSettings__ExpiryMinutes
+        value: 120
       - key: PORT
         value: 10000
     healthCheckPath: /swagger
+    autoDeploy: true

@@ -42,25 +42,54 @@ This API is configured for deployment to Render's free plan using Docker.
 
 2. Connect your GitHub repository to Render
 
-3. Create a new Web Service and select "Deploy from GitHub repo"
+3. Create a new Web Service using the Blueprint option (which will use your render.yaml file)
+   - Alternatively, select "Deploy from GitHub repo" and configure manually
 
-4. Select your repository and branch
-
-5. Configure the following environment variables in the Render dashboard:
+4. Configure the following environment variables in the Render dashboard:
    - `ConnectionStrings__DefaultConnection`: Your production database connection string
-   - `JwtSettings__SecretKey`: Your secure JWT secret key
+   - `JwtSettings__SecretKey`: Your secure JWT secret key (at least 32 characters long)
 
-6. Click "Create Web Service"
+5. Click "Create Web Service"
 
-7. Render will automatically build and deploy your API using the provided Dockerfile
+6. Render will automatically build and deploy your API using the provided Dockerfile
 
-8. Once deployed, your API will be available at `https://internship-api.onrender.com` (or your custom subdomain)
+7. Once deployed, your API will be available at `https://internship-api.onrender.com` (or your custom subdomain)
 
-### Database Options for Render
+### Environment Variables for Render Deployment
 
-1. **PostgreSQL on Render**: Render offers a free PostgreSQL database that you can use instead of SQL Server. You'll need to update your code to use Npgsql instead of SQL Server.
+```
+ASPNETCORE_ENVIRONMENT=Production
+PORT=10000
+ConnectionStrings__DefaultConnection=Server=your-server.database.windows.net;Database=internDb;User Id=your-username;Password=your-password;TrustServerCertificate=True;
+JwtSettings__SecretKey=your-secure-secret-key-at-least-32-chars-long
+JwtSettings__Issuer=InternshipAPI
+JwtSettings__Audience=InternshipAPIClients
+JwtSettings__ExpiryMinutes=120
+```
 
-2. **External Database**: You can use an external database service like Azure SQL, ElephantSQL, or Supabase.
+### Database Options for Render Free Tier
+
+1. **Azure SQL Server**: Azure offers a basic tier with a free option (DTU-based)
+   - Connection string format: `Server=your-server.database.windows.net;Database=internDb;User Id=your-username;Password=your-password;TrustServerCertificate=True;`
+
+2. **ElephantSQL**: Free PostgreSQL hosting (requires code changes)
+   - You'll need to update your code to use Npgsql instead of SQL Server
+   - Connection string format: `Host=your-elephant-sql-server;Database=your-db;Username=your-username;Password=your-password;`
+
+3. **Railway**: Offers PostgreSQL with a free tier (requires code changes)
+
+### Free Tier Optimization Tips
+
+1. **Cold Starts**: Render free tier spins down after 15 minutes of inactivity
+   - First request after inactivity will be slower
+   - Consider using a service like UptimeRobot to ping your API every 14 minutes
+
+2. **Resource Limits**: Free tier has 512 MB RAM and 0.1 CPU
+   - Optimize your API to be memory-efficient
+   - Use async/await patterns for better performance
+
+3. **Monthly Usage**: Limited to 750 hours per month
+   - This is enough for continuous operation
 
 ## Local Setup Instructions
 
